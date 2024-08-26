@@ -5,6 +5,7 @@ interface GameButtonType {
   title: string;
   icon: string | React.ReactNode;
   description: string;
+
   onClick: () => void;
 }
 
