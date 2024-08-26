@@ -1,16 +1,14 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { ECLIPSE_CLUSTERS, useEclipseCluster } from "@/hooks/useEclipseCluster";
-import { useIsReadyToGame } from "@/hooks/useIsReadyToGame";
-import { useSoddleProgram } from "@/hooks/use-soddle-program";
 import { useEffect } from "react";
 import Button2 from "@/components/ui/button2";
+import { useSoddleProgram } from "@/hooks/useGameState";
 
 const EclipseWallets = () => {
   const { publicKey, disconnect, connected, connecting } = useWallet();
   const { setVisible } = useWalletModal();
   const { cluster, setCluster } = useEclipseCluster();
-  const isReadyToGame = useIsReadyToGame();
   const getProgram = useSoddleProgram();
 
   useEffect(() => {
@@ -64,7 +62,7 @@ const EclipseWallets = () => {
             </div>
           </div>
         )}
-        {connected && isReadyToGame && (
+        {connected && (
           <div className="alert alert-info">
             <div>
               <span>Ready to play Soddle!</span>

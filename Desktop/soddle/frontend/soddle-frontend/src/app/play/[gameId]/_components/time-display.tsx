@@ -1,19 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { useGameState } from "@/hooks/useGameState";
-import { GameState } from "@/lib/types/idl-types";
 import { useCountdown } from "@/hooks/useCountdown";
 
 const TimerDisplay: React.FC = () => {
-  const { fetchGameState } = useGameState();
-  const [gameState, setGameState] = useState<GameState | null>(null);
-  // const fetchedGameState = fetchGameState();
+  const { gameState } = useGameState();
 
-  // console.log("end time", new Date(endTime ));
-  const endTime = new Date().getTime() + 10000;
-
-  const timeRemaining: any = useCountdown(endTime);
-  console.log("timeRemaining", timeRemaining);
+  const endTime = gameState?.currentCompetition?.endTime
+    ? gameState.currentCompetition.endTime.toNumber() * 1000
+    : null;
+  const timeRemaining: any = useCountdown(333333333);
 
   const glowingStyle = `
   text-white 

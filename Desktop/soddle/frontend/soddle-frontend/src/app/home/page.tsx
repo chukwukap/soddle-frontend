@@ -2,7 +2,7 @@
 import Container from "@/components/layout/container";
 import UserInfoCard from "./_components/user-info-card";
 import TimeSection from "./_components/time-section";
-import { GameType, MAX_GUESSES } from "@/lib/constants";
+import { GameType } from "@/lib/constants";
 import { GameButton } from "./_components/game-type-button";
 import { HashtagIcon, LaughingEmojiIcon } from "@/components/icons";
 import { useRootStore } from "@/stores/rootStore";
@@ -38,20 +38,7 @@ export default function GameHome() {
 
       const [gameState] = await Promise.all([fetchGameState()]);
 
-      // const currentTime = Date.now() / 1000; // Current time in seconds
-
-      console.log("gameState in home page:", gameState);
-      console.log("end time:", new Date(Number(gameState?.lastUpdateTime!)));
-
-      // if (currentTime >= Number(gameState?.lastUpdateTime!)) {
-      //   toast.error("Sorry, the daily competition has ended");
-      //   return;
-      // }
-
-      console.log("starting game session...");
-      // If all checks pass, start a new game session
       await startGameSession(gameType, kol);
-      toast.success(`Started game successfully!`);
       router.push(`/play/${gameType}`);
     } catch (error) {
       console.error("Error  GameSession", error);

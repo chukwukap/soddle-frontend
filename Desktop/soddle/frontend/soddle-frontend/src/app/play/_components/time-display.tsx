@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useGameState } from "@/hooks/useGameState";
-import { useCountdown } from "@/hooks/useCountDown";
+import { useCountdown } from "@/hooks/useCountdown";
 import { TimeInput } from "@/lib/utils";
 
 const TimerDisplay: React.FC = () => {

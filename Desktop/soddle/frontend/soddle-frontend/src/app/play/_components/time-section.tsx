@@ -1,7 +1,7 @@
 "use client";
 import { TimeInput } from "@/lib/utils";
 import { memo } from "react";
-import { useCountdown } from "@/hooks/useCountDown";
+import { useCountdown } from "@/hooks/useCountdown";
 import { useGameState } from "@/hooks/useGameState";
 
 export default function TimeSection() {
