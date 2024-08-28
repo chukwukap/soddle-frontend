@@ -46,9 +46,9 @@ export function LaughingEmojiIcon({ className }: { className: string }) {
       fill="none"
       className={`${className}`}
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <circle cx="12" cy="12" r="10" />
       <path d="M18 13a6 6 0 0 1-6 5 6 6 0 0 1-6-5h12Z" />
