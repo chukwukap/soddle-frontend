@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 interface TweetsGuessListProps {
-  guess2Results: Game2GuessResult[];
+  guess2Results?: Game2GuessResult[];
 }
 
 export const TweetsGuessList: React.FC<TweetsGuessListProps> = ({
@@ -11,7 +11,8 @@ export const TweetsGuessList: React.FC<TweetsGuessListProps> = ({
 }) => {
   return (
     <ul className="flex flex-col gap-2">
-      {guess2Results.map((guessResult) => (
+      {!guess2Results && <div>Todo: Guess results not found</div>}
+      {guess2Results?.map((guessResult) => (
         <ListItem key={guessResult.kol.id} guessResult={guessResult} />
       ))}
     </ul>

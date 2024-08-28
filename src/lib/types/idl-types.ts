@@ -81,7 +81,8 @@ export type GameSession = {
   targetIndex: number;
   game1Guesses: Game1GuessResult[];
   game2Guesses: Game2GuessResult[];
-  game3Guesses: Game1GuessResult[];
+  // i think having game1guess here was an error
+  game3Guesses: Game3GuessResult[];
   completed: boolean;
   score: number;
   deposit: number;

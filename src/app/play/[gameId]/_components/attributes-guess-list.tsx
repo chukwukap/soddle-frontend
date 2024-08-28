@@ -1,3 +1,4 @@
+"use client";
 import { useGameSession } from "@/hooks/useGameSession";
 import { AttributeResult, Game1GuessResult, KOL } from "@/lib/types/idl-types";
 import Image from "next/image";
@@ -5,7 +6,7 @@ import React, { useEffect } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRootStore } from "@/stores/storeProvider";
 interface AttributesGuessListProps {
-  guess1Results: Game1GuessResult[];
+  guess1Results?: Game1GuessResult[];
 }
 
 const cellStyle = "p-2 overflow-hidden";
@@ -73,7 +74,8 @@ export const AttributesGuessListTable: React.FC<AttributesGuessListProps> = ({
           ].map((header) => (
             <HeaderCell key={header}>{header}</HeaderCell>
           ))}
-          {guess1Results.map((guess1Result) => (
+          {!guess1Results && <div>Todo: Guess results not found</div>}
+          {guess1Results?.map((guess1Result) => (
             <TableItem key={guess1Result.kol.id} guess1Result={guess1Result} />
           ))}
         </div>

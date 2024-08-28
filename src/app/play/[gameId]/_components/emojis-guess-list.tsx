@@ -3,7 +3,7 @@ import { Game3GuessResult } from "@/lib/types/idl-types";
 import Image from "next/image";
 
 interface EmojisGuessListProps {
-  guess3Results: Game3GuessResult[];
+  guess3Results?: Game3GuessResult[];
 }
 
 export const EmojisGuessList: React.FC<EmojisGuessListProps> = ({
@@ -11,7 +11,8 @@ export const EmojisGuessList: React.FC<EmojisGuessListProps> = ({
 }) => {
   return (
     <ul className="flex flex-col gap-2">
-      {guess3Results.map((guessResult) => (
+      {!guess3Results && <div>Todo: Guess results not found</div>}
+      {guess3Results?.map((guessResult) => (
         <ListItem key={guessResult.kol.id} guessResult={guessResult} />
       ))}
     </ul>

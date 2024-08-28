@@ -151,26 +151,16 @@ export default function GameIdPageClient({
         <section className="text-white no-scrollbar">
           {gameId === GameType.Attributes ? (
             <AttributesGuessListTable
-              guess1Results={
-                gameSession?.game1Guesses as unknown as Game1GuessResult[]
-              }
+              guess1Results={gameSession?.game1Guesses}
             />
           ) : gameId === GameType.Tweets ? (
             <Container>
-              <TweetsGuessList
-                guess2Results={
-                  gameSession?.game2Guesses as unknown as Game2GuessResult[]
-                }
-              />
+              <TweetsGuessList guess2Results={gameSession?.game2Guesses} />
             </Container>
           ) : (
             gameId === GameType.Emojis && (
               <Container>
-                <EmojisGuessList
-                  guess3Results={
-                    gameSession?.game3Guesses as unknown as Game3GuessResult[]
-                  }
-                />
+                <EmojisGuessList guess3Results={gameSession?.game3Guesses} />
               </Container>
             )
           )}
