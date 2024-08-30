@@ -2,8 +2,22 @@ import Image from "next/image";
 import * as React from "react";
 import Button2 from "./ui/button2";
 import Trapezoid from "@/app/play/[gameId]/_components/trapezoid";
+import { GameSession } from "@/lib/types/idlTypes";
 
-export default function PopUpWindow() {
+export default function UserProfileModal({
+  gameSession,
+}: {
+  gameSession: GameSession;
+}) {
+  const handleShareOnX = () => {
+    const tweetText = encodeURIComponent(
+      `I solved the riddle in 20 seconds on Soddle! Can you beat my score? #Soddle #CryptoGame`
+    );
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}`;
+    window.open(tweetUrl, "_blank");
+  };
+
+  if (!gameSession) return <div>No data</div>;
   return (
     <div className="w-full h-[80vh] max-w-[350px]  flex justify-center items-center z-50 text-white ">
       <svg
@@ -25,7 +39,7 @@ export default function PopUpWindow() {
           alt="user"
           className="rounded-full  border-2"
         />
-        <h3 className="text-2xl font-bold">Chukwuka Uba</h3>
+        <h3 className="text-2xl font-bold">{gameSession.player}</h3>
         <p className="text-xl text-center">
           “White knight of the crypto ecosystem, feared by scammers around the
           world.”
@@ -52,9 +66,12 @@ export default function PopUpWindow() {
           </div>
         </div>
         <div className="text-xl w-full h-52 flex items-center justify-center  bg-[#181716] border border-[#2A342A]">
-          “I solved the riddle in 20 seconds.”
+          "I solved the riddle in 20 seconds."
         </div>
-        <Button2 className="text-black px-4 py-2 relative -top-8 max-w-[200px]">
+        <Button2
+          className="text-black px-4 py-2 relative -top-8 max-w-[200px]"
+          onClick={handleShareOnX}
+        >
           Share on X
         </Button2>
         <Button2 className="relative -bottom-4">Continue </Button2>

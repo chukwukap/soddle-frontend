@@ -6,24 +6,23 @@ import {
   KOL,
   Game3GuessResult,
   KolWithTweets,
-} from "@/lib/types/idl-types";
-import SearchBar from "./_components/search-bar";
+} from "@/lib/types/idlTypes";
+import SearchBar from "./_components/searchBar";
 import { GameType } from "@/lib/constants";
-import TimerDisplay from "./_components/time-display";
+import TimerDisplay from "./_components/timeDisplay";
 import Container from "@/components/layout/container";
-import { AttributesGuessListTable } from "./_components/attributes-guess-list";
-import { TweetsGuessList } from "./_components/tweets-guess-list";
-import { EmojisGuessList } from "./_components/emojis-guess-list";
+import { AttributesGuessListTable } from "./_components/attributesGuessList";
+import { TweetsGuessList } from "./_components/tweetsGuessList";
+import { EmojisGuessList } from "./_components/emojisGuessList";
 import Legend from "./_components/legends";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { fetchRandomKOL } from "@/lib/fns/fetchers";
-import TweetQuestionBoxWrapper from "./_components/tweet-question-box-wrapper";
+import TweetQuestionBoxWrapper from "./_components/tweetsQuestionBoxWrapper";
 import { useGameSession } from "@/hooks/useGameSession";
 import { useRootStore } from "@/stores/storeProvider";
 
-// type KolWithEmojis = KOL & { emojis: string[] };
 export default function GameIdPageClient({
   gameId,
   kols,
@@ -150,17 +149,29 @@ export default function GameIdPageClient({
       {
         <section className="text-white no-scrollbar">
           {gameId === GameType.Attributes ? (
-            <AttributesGuessListTable
-              guess1Results={gameSession?.game1Guesses}
-            />
+            gameSession?.game1Guesses && (
+              <AttributesGuessListTable
+                guess1Results={
+                  gameSession?.game1Guesses as unknown as Game1GuessResult[]
+                }
+              />
+            )
           ) : gameId === GameType.Tweets ? (
             <Container>
-              <TweetsGuessList guess2Results={gameSession?.game2Guesses} />
+              <TweetsGuessList
+                guess2Results={
+                  gameSession?.game2Guesses as unknown as Game2GuessResult[]
+                }
+              />
             </Container>
           ) : (
             gameId === GameType.Emojis && (
               <Container>
-                <EmojisGuessList guess3Results={gameSession?.game3Guesses} />
+                <EmojisGuessList
+                  guess3Results={
+                    gameSession?.game3Guesses as unknown as Game3GuessResult[]
+                  }
+                />
               </Container>
             )
           )}
@@ -169,9 +180,7 @@ export default function GameIdPageClient({
       {/* Legends */}
       {isLegendOpen && (
         <Container>
-          <>
-            <Legend />
-          </>
+          <Legend />
         </Container>
       )}
     </div>

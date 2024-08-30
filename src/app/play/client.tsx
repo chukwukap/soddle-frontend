@@ -1,19 +1,19 @@
 "use client";
 import Container from "@/components/layout/container";
-import UserInfoCard from "./_components/user-info-card";
-import TimeSection from "./_components/time-section";
+import UserInfoCard from "./_components/userInfoCard";
+import TimeSection from "./_components/timeSection";
 import { GameType } from "@/lib/constants";
-import { GameButton } from "./_components/game-type-button";
+import { GameButton } from "./_components/gameTypeButton";
 import { HashtagIcon, LaughingEmojiIcon } from "@/components/icons";
-import { kols } from "@/lib/constants/kols";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { toast } from "sonner";
-import { KOL } from "@/lib/types/idl-types";
+import { KOL } from "@/lib/types/idlTypes";
 import { useGameSession } from "@/hooks/useGameSession";
 import { useRouter } from "next/navigation";
 import { useRootStore } from "@/stores/storeProvider";
+import { useMemo } from "react";
 
-export default function GamePlayPageClient() {
+export default function GamePlayPageClient({ kols }: { kols: KOL[] }) {
   const { wallet } = useWallet();
   const { startGameSession, fetchGameSession } = useGameSession();
   const { ui, game } = useRootStore();
@@ -22,6 +22,10 @@ export default function GamePlayPageClient() {
   const setGameSession = game((state) => state.setGameSession);
   const router = useRouter();
 
+  const targetIdx = useMemo(() => {
+    return Math.floor(Math.random() * kols.length);
+  }, [kols]);
+
   const handleStartGameSession = async (gameType: GameType, kol: KOL) => {
     try {
       setLoading(true);
@@ -29,11 +33,33 @@ export default function GamePlayPageClient() {
         throw new Error("Please connect your wallet");
       }
       const gameSession = await fetchGameSession(wallet?.adapter.publicKey!);
+
       if (gameSession && gameSession.gameType === gameType) {
         setGameSession(gameSession);
-        setCurrentGameType(gameType);
-        router.push(`/play/${gameType}`);
-        return;
+        if (
+          gameSession.game1Completed &&
+          gameSession.gameType === GameType.Attributes
+        ) {
+          toast.info("You have already completed Attributes game");
+          setCurrentGameType(gameType);
+          router.push(`/play/${gameType}`);
+          return;
+        } else if (
+          gameSession.game2Completed &&
+          gameSession.gameType === GameType.Tweets
+        ) {
+          toast.info("You have already completed Tweets game");
+          setCurrentGameType(gameType);
+          router.push(`/play/${gameType}`);
+          return;
+        } else if (
+          gameSession.game3Completed &&
+          gameSession.gameType === GameType.Emojis
+        ) {
+          setCurrentGameType(gameType);
+          router.push(`/play/${gameType}`);
+          return;
+        }
       }
 
       await startGameSession(gameType, kol);
@@ -46,8 +72,8 @@ export default function GamePlayPageClient() {
     }
   };
 
-  const linkStyle =
-    "bg-[#111411] border border-[#03B500] border-opacity-50 p-4 text-white text-lg transition-all duration-300 ease-in-out hover:drop-shadow-[0_0_10px_rgba(47,255,43,1)] hover:shadow-[0_0_20px_rgba(47,255,43,0.5)]";
+  // const linkStyle =
+  //   "bg-[#111411] border border-[#03B500] border-opacity-50 p-4 text-white text-lg transition-all duration-300 ease-in-out hover:drop-shadow-[0_0_10px_rgba(47,255,43,1)] hover:shadow-[0_0_20px_rgba(47,255,43,0.5)]";
 
   return (
     <Container>
@@ -80,7 +106,7 @@ export default function GamePlayPageClient() {
               type={type.type}
               title={type.title}
               icon={type.icon}
-              onClick={() => handleStartGameSession(type.type, kols[0])}
+              onClick={() => handleStartGameSession(type.type, kols[targetIdx])}
               key={type.type}
             />
           ) : (
@@ -90,7 +116,7 @@ export default function GamePlayPageClient() {
               title={type.title}
               className="w-full"
               icon={type.icon}
-              onClick={() => handleStartGameSession(type.type, kols[0])}
+              onClick={() => handleStartGameSession(type.type, kols[targetIdx])}
               key={type.type}
             />
           );
@@ -102,10 +128,8 @@ export default function GamePlayPageClient() {
 
 function GameButton2({
   description,
-  type,
   title,
   icon,
-  className,
   onClick,
 }: {
   description: string;

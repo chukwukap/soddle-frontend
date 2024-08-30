@@ -1,7 +1,7 @@
-import LandingPageclient from "./client";
+import LandingPageClient from "./client";
 
 async function LandingPage() {
-  return <LandingPageclient />;
+  return <LandingPageClient />;
 }
 
 export default LandingPage;

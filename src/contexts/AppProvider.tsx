@@ -7,7 +7,7 @@ import React, {
   useCallback,
   ReactNode,
 } from "react";
-import { GameState, GameSession } from "@/lib/types/idl-types";
+import { GameState, GameSession } from "@/lib/types/idlTypes";
 
 // UI Context
 type UIContextType = {

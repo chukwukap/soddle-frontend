@@ -1,5 +1,5 @@
 import { appConfig } from "../config";
-import { KolWithTweets } from "../types/idl-types";
+import { KolWithTweets } from "../types/idlTypes";
 
 interface ApiResponse<T> {
   status: string;

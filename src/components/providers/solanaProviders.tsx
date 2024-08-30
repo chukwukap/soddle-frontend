@@ -10,7 +10,7 @@ import { SnapWalletAdapter } from "@drift-labs/snap-wallet-adapter";
 
 import { ReactNode, useMemo } from "react";
 import { useEclipseCluster } from "@/hooks/useEclipseCluster";
-import { ReactQueryProvider } from "./react-query-provider";
+import { ReactQueryProvider } from "./reactQueryProvider";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 

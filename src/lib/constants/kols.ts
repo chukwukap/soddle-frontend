@@ -1,4 +1,4 @@
-import { KOL } from "../types/idl-types";
+import { KOL } from "../types/idlTypes";
 
 export const kols: KOL[] = [
   {

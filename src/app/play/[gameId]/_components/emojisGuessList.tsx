@@ -1,5 +1,5 @@
 import React from "react";
-import { Game3GuessResult } from "@/lib/types/idl-types";
+import { Game3GuessResult } from "@/lib/types/idlTypes";
 import Image from "next/image";
 
 interface EmojisGuessListProps {

@@ -1,6 +1,6 @@
-import { KOL } from "@/lib/types/idl-types";
+import { KOL } from "@/lib/types/idlTypes";
 import React, { useState, useEffect, useRef } from "react";
-import TrapezoidInput from "./trapezoid-input";
+import TrapezoidInput from "./trapezoidInput";
 import Image from "next/image";
 import { toast } from "sonner";
 import { useGameSession } from "@/hooks/useGameSession";

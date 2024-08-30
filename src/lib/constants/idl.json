@@ -1,5 +1,5 @@
 {
-  "address": "Ap1cCCM1qUTY75vrqssbQ572RHfUTrWrwmjEqNhxwkqv",
+  "address": "2s6ZwgHDs31jPwM2AHwLRQhqcDuAQXY5zSLF3ZceQrMC",
   "metadata": {
     "name": "soddle_game",
     "version": "0.1.0",
@@ -502,11 +502,7 @@
         "fields": [
           {
             "name": "kol",
-            "type": {
-              "defined": {
-                "name": "KOL"
-              }
-            }
+            "type": "string"
           },
           {
             "name": "result",
@@ -541,10 +537,6 @@
             "type": "bool"
           },
           {
-            "name": "game_3_completed",
-            "type": "bool"
-          },
-          {
             "name": "game_1_score",
             "type": "u32"
           },
@@ -553,19 +545,11 @@
             "type": "u32"
           },
           {
-            "name": "game_3_score",
-            "type": "u32"
-          },
-          {
             "name": "game_1_guesses_count",
             "type": "u32"
           },
           {
             "name": "game_2_guesses_count",
-            "type": "u32"
-          },
-          {
-            "name": "game_3_guesses_count",
             "type": "u32"
           },
           {
@@ -589,21 +573,14 @@
           {
             "name": "game_2_guesses",
             "type": {
-              "vec": {
-                "defined": {
-                  "name": "Game2GuessResult"
-                }
-              }
-            }
-          },
-          {
-            "name": "game_3_guesses",
-            "type": {
-              "vec": {
-                "defined": {
-                  "name": "Game1GuessResult"
-                }
-              }
+              "array": [
+                {
+                  "defined": {
+                    "name": "Game2GuessResult"
+                  }
+                },
+                10
+              ]
             }
           },
           {
@@ -675,12 +652,12 @@
             "type": "string"
           },
           {
-            "name": "account_creation",
-            "type": "u16"
-          },
-          {
             "name": "pfp",
             "type": "string"
+          },
+          {
+            "name": "account_creation",
+            "type": "u16"
           },
           {
             "name": "followers",

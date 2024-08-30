@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { SolanaProviders } from "./solana-providers";
+import { SolanaProviders } from "./solanaProviders";
 import { Toaster } from "sonner";
 
 import { RootStoreProvider } from "@/stores/storeProvider";

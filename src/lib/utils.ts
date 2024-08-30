@@ -30,3 +30,17 @@ export const formatTime = (input: TimeInput): TimeObject => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function formatCount(count: number): string {
+  if (count < 1000) {
+    return count.toString();
+  }
+
+  const formatter = new Intl.NumberFormat("en", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 1,
+  });
+
+  return formatter.format(count);
+}

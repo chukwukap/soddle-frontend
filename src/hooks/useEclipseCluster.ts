@@ -3,20 +3,26 @@
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { useState, useMemo } from "react";
 
+export enum EclipseClusterName {
+  MAINNET = "mainnet",
+  TESTNET = "testnet",
+  DEVNET = "devnet",
+}
+
 export const ECLIPSE_CLUSTERS = {
-  mainnet: {
+  [EclipseClusterName.MAINNET]: {
     name: "Eclipse Mainnet",
     endpoint: "https://mainnetbeta-rpc.eclipse.xyz",
     network: WalletAdapterNetwork.Mainnet,
-    explorer: "https://explorer.eclipse.xyz", // Replace with actual mainnet explorer URL when available
+    explorer: "https://explorer.eclipse.xyz",
   },
-  testnet: {
+  [EclipseClusterName.TESTNET]: {
     name: "Eclipse Testnet",
     endpoint: "https://testnet.dev2.eclipsenetwork.xyz",
     network: WalletAdapterNetwork.Testnet,
     explorer: "https://explorer.dev2.eclipsenetwork.xyz",
   },
-  devnet: {
+  [EclipseClusterName.DEVNET]: {
     name: "Eclipse Devnet2",
     endpoint: "https://staging-rpc.dev2.eclipsenetwork.xyz",
     network: WalletAdapterNetwork.Devnet,
@@ -25,14 +31,16 @@ export const ECLIPSE_CLUSTERS = {
 };
 
 export function useEclipseCluster() {
-  const [cluster, setCluster] = useState(ECLIPSE_CLUSTERS.devnet);
+  const [cluster, setCluster] = useState(
+    ECLIPSE_CLUSTERS[EclipseClusterName.DEVNET]
+  );
 
   const endpoint = useMemo(() => cluster.endpoint, [cluster]);
 
   return {
     cluster,
     endpoint,
-    setCluster: (name: keyof typeof ECLIPSE_CLUSTERS) =>
+    setCluster: (name: EclipseClusterName) =>
       setCluster(ECLIPSE_CLUSTERS[name]),
   };
 }

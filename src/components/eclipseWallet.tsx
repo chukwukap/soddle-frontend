@@ -3,13 +3,12 @@ import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { ECLIPSE_CLUSTERS, useEclipseCluster } from "@/hooks/useEclipseCluster";
 import { useEffect } from "react";
 import Button2 from "@/components/ui/button2";
-import { useSoddleProgram } from "@/hooks/useGameState";
-
+import { useProgram } from "@/hooks/useProgram";
 const EclipseWallets = () => {
   const { publicKey, disconnect, connected, connecting } = useWallet();
   const { setVisible } = useWalletModal();
   const { cluster, setCluster } = useEclipseCluster();
-  const getProgram = useSoddleProgram();
+  const getProgram = useProgram();
 
   useEffect(() => {
     if (connected) {

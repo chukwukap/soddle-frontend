@@ -1,5 +1,5 @@
 "use client";
-import { ConnectWalletButton } from "@/components/connect-button";
+import { ConnectWalletButton } from "@/components/connectButton";
 import Container from "@/components/layout/container";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useRouter } from "next/navigation";
