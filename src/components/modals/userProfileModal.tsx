@@ -1,10 +1,10 @@
 import Image from "next/image";
 import * as React from "react";
 import Button2 from "@/components/ui/button2";
-import Trapezoid from "@/app/play/[gameId]/_components/trapezoid";
 import { GameSession, GameSessionFromApi } from "@/types";
 import { shortenAddress } from "@/lib/utils";
 import { useRootStore } from "@/stores/storeProvider";
+import Trapezoid from "../ui/trapezoid";
 
 export default function UserProfileModal({
   gameSession,
