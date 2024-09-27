@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             className="hover:opacity-80 transition-opacity"
           />
         </Link>
-        <Link
+        {/* <Link
           href="https://t.me/SoddleOfficial"
           target="_blank"
           rel="noopener noreferrer"
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
             height={24}
             className="hover:opacity-80 transition-opacity"
           />
-        </Link>
+        </Link> */}
       </div>
     </footer>
   );
