@@ -79,7 +79,7 @@ export default function AttributesGameClient({
   }, []);
 
   const handleGuess = async (kolWithTweets: KolWithTweets) => {
-    const kol: KOL = {
+    const kol: KOL & { pfpType: string } = {
       accountCreation: kolWithTweets.accountCreation,
       age: kolWithTweets.age,
       country: kolWithTweets.country,
@@ -88,6 +88,7 @@ export default function AttributesGameClient({
       id: kolWithTweets.id,
       name: kolWithTweets.name,
       pfp: kolWithTweets.pfp,
+      pfpType: kolWithTweets.pfpType,
     };
     console.log("kol inside handleGuess", kol);
 
