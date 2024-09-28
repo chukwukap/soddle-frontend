@@ -83,7 +83,7 @@ export default function GamePlayPageClient() {
           totalScore: gameSession.totalScore,
           completed: gameSession.completed,
           score: gameSession.score,
-          kol: randomKol,
+          kol: apiKol,
           competitionId: gameSession.competitionId,
           guesses: [],
         },
