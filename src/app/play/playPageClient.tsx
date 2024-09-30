@@ -173,13 +173,13 @@ export default function GamePlayPageClient() {
         {[
           {
             title: "Attributes Game",
-            description: "match an infamous tweet to it's publisher",
+            description: "Find the daily KOL through clues on every try",
             type: GameType.Attributes,
             icon: "A",
           },
           {
             title: "Tweets Game",
-            description: "find the daily KOL through clues on every try.",
+            description: "Match an infamous tweet to its publisher",
             type: GameType.Tweets,
             icon: <HashtagIcon className="size-6" />,
           },
