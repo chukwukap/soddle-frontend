@@ -3,5 +3,5 @@ export const appConfig = {
     process.env.NODE_ENV === "production"
       ? "https://demo.soddle.io"
       : "http://localhost:3000",
-  apiBaseUrl: "https://soddle-backend.adaptable.app",
+  apiBaseUrl: "soddle-eclipse-production.up.railway.app",
 };
